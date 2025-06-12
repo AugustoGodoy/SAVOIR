@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { Navbar, Logo, Title, Input, Button } from "../components";
 import { signIn } from "../services/authService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErro("");
     try {
-      const data = await signIn(email, senha);
-      // Salve o token na store centralizada aqui
-      console.log("Token:", data.token);
-      // Redirecione ou atualize o estado do app conforme necessário
+      const token = await signIn(email, senha);
+      login(token);
+      navigate("/map");
     } catch (err) {
       setErro(err.message);
     }

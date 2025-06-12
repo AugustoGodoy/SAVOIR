@@ -10,36 +10,33 @@ export function useAuth() {
 
 // Provider do contexto
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
+  const [token, setToken] = useState(() => {
     // Busca dados do sessionStorage ao iniciar
-    const name = sessionStorage.getItem("name");
     const token = sessionStorage.getItem("token");
-    return name && token ? { name, token } : null;
+    return token ? { token } : null;
   });
 
   // Salva no sessionStorage sempre que user mudar
   useEffect(() => {
-    if (user) {
-      sessionStorage.setItem("name", user.name);
-      sessionStorage.setItem("token", user.token);
+    if (token) {
+      sessionStorage.setItem("token", token);
     } else {
-      sessionStorage.removeItem("name");
       sessionStorage.removeItem("token");
     }
-  }, [user]);
+  }, [token]);
 
   // Função para login
-  function login(name, token) {
-    setUser({ name, token });
+  function login(token) {
+    setToken({ token });
   }
 
   // Função para logout
   function logout() {
-    setUser(null);
+    setToken(null);
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
