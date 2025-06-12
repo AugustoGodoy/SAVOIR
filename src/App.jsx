@@ -6,7 +6,11 @@ function App() {
       <Navbar />
       <div className="max-w-md mx-auto p-4">
         <Logo />  
-        <Title title="Bem-vindo de volta" />
+
+        <div className="pt-6 pb-4">
+          <Title title="Bem-vindo de volta" />
+        </div>
+
         <Input label="Email" placeholder="Digite algo..." />
         <Button>Teste</Button>
       </div>
