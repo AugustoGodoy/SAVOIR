@@ -1,9 +1,9 @@
 import "./title.css";
 
-export const Title = () => {
+export const Title = ({title}) => {
   return (
     <div className="title">
-      <div className="text-wrapper">Bem-vindo de volta</div>
+      <div className="text-wrapper">{title}</div>
     </div>
   );
 };

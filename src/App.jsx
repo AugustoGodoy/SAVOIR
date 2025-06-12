@@ -1,8 +1,16 @@
+import { Navbar, Logo, Title, Input, Button } from "./components";
+
 function App() {
   return (
-    <h1 class="text-3xl font-bold underline text-red-700">
-      Hello world!
-    </h1>
+    <>
+      <Navbar />
+      <div className="max-w-md mx-auto p-4">
+        <Logo />  
+        <Title title="Bem-vindo de volta" />
+        <Input label="Email" placeholder="Digite algo..." />
+        <Button>Teste</Button>
+      </div>
+    </>
   )
 }
 

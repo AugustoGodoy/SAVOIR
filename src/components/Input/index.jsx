@@ -1,4 +1,4 @@
-import './Input/input.css';
+import './input.css';
 
 export const Input = ({ label, value, onChange, type = "text", placeholder = "", ...props }) => (
   <div>
