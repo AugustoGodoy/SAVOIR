@@ -1,43 +1,57 @@
-# Meu Aplicativo React com Tailwind
+# Atitus Maps
 
-Este projeto é uma aplicação React estilizada com Tailwind CSS e construída usando Vite. Ele serve como um modelo para criar aplicações web modernas com foco em desempenho e experiência do desenvolvedor.
+## Sobre o Projeto
+
+O **Atitus Maps** é uma aplicação web que permite visualizar e cadastrar pontos geográficos em um mapa interativo. Usuários autenticados podem adicionar novos pontos clicando no mapa, que são salvos em um backend e exibidos para todos.
 
 ## Funcionalidades
 
-- React para construção de interfaces de usuário
-- Tailwind CSS para estilização com utilitários
-- Vite para processos rápidos de desenvolvimento e build
+- Visualização de pontos cadastrados no mapa.
+- Cadastro de novos pontos ao clicar no mapa.
+- Autenticação de usuários.
+- Integração com Google Maps.
 
-## Começando
+## Dependências
 
-Para começar com este projeto, siga as instruções abaixo:
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)
+- [Axios](https://www.npmjs.com/package/axios)
 
-Vamos criar uma ToDo List utilizando react com Tailwind orientados por IA (Copilot)
+## Como rodar o projeto
 
-Seu repositório deve ser público!
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/atitus-maps.git
+   cd atitus-maps
+   ```
 
-### Como iniciar este exercício
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-Clique com o botão direito em **Copiar Exercício** e abra o link em uma nova aba.
+3. **Crie o arquivo `.env` na raiz do projeto:**
+   ```
+   VITE_GOOGLE_MAPS_API_KEY=sua_chave_google_maps_aqui
+   ```
 
-   <a id="copy-exercise" target="_blank" href="https://github.com/new?template_name=react-tailwind-template&template_owner=jaisonschmidt&name=react-tailwind-projectname&owner=%40me&visibility=public">
-      <img src="https://img.shields.io/badge/📠_Copiar_Exercício-008000" height="25pt"/>
-   </a>
+   > **Atenção:**  
+   > - O prefixo `VITE_` é obrigatório para variáveis de ambiente no Vite.
+   > - Não compartilhe sua chave de API publicamente.
 
-### Construindo para Produção
+4. **Rode o projeto:**
+   ```bash
+   npm run dev
+   ```
 
-Para construir a aplicação para produção, execute:
+5. **Acesse no navegador:**  
+   Abra [http://localhost:5173](http://localhost:5173) para visualizar a aplicação.
 
-```
-npm run build
-```
+## Observações
 
-Isso criará uma build otimizada da sua aplicação no diretório `dist`.
+- Certifique-se de que sua chave do Google Maps tem permissão para uso em aplicações web.
+- O backend utilizado está disponível em:  
+  `https://passing-agatha-atitus-0ca94c8f.koyeb.app/ws/point`
 
-## Uso
-
-Você pode começar a modificar o arquivo `src/App.jsx` para alterar o componente principal da aplicação. Componentes adicionais podem ser criados no diretório `src/components`.
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+---
