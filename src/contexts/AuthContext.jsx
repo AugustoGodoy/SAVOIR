@@ -11,12 +11,11 @@ export function useAuth() {
 // Provider do contexto
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => {
-    // Busca dados do sessionStorage ao iniciar
-    const token = sessionStorage.getItem("token");
-    return token ? { token } : null;
+    // Busca token do sessionStorage ao iniciar
+    return sessionStorage.getItem("token") || null;
   });
 
-  // Salva no sessionStorage sempre que user mudar
+  // Salva no sessionStorage sempre que token mudar
   useEffect(() => {
     if (token) {
       sessionStorage.setItem("token", token);
@@ -26,8 +25,8 @@ export function AuthProvider({ children }) {
   }, [token]);
 
   // Função para login
-  function login(token) {
-    setToken({ token });
+  function login(newToken) {
+    setToken(newToken);
   }
 
   // Função para logout

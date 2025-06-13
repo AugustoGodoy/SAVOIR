@@ -1,6 +1,8 @@
-import React from "react";
+import { useEffect, useContext, useState } from "react";
 import { Navbar } from "../components";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { getPoints, postPoint } from '../services/mapService';
+import { useAuth } from "../contexts/AuthContext";
 
 const containerStyle = {
   width: "100%",
@@ -14,17 +16,54 @@ const center = {
   lng: -46.633308,
 };
 
-const markers = [
-  { id: 1, position: { lat: -23.55052, lng: -46.633308 }, title: "Centro de SP" },
-  { id: 2, position: { lat: -23.559616, lng: -46.731386 }, title: "Butantã" },
-  { id: 3, position: { lat: -23.564224, lng: -46.652857 }, title: "Paulista" },
-];
-
 export const Map = () => {
+  const { token } = useAuth();
+  const [markers, setMarkers] = useState([]);
+  
   // Substitua pela sua chave da API do Google Maps
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "CHAVE_API",
+    googleMapsApiKey: "AIzaSyBwrRPIG6SuQN60WWTa58fbHoja85a5fLs",
   });
+
+  useEffect(() => {
+    async function fetchMarkers() {
+      try {
+        const data = await getPoints(token);
+        setMarkers(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+    fetchMarkers();
+  }, [token]);
+
+  // Função para adicionar ponto ao clicar no mapa
+  const handleMapClick = async (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    const newPoint = {
+      latitude: lat,
+      longitude: lng,
+      descricao: "",
+    };
+    try {
+      const savedPoint = await postPoint(token, newPoint);
+      
+      // savedPoint vem com os campos id, latitude, longitude e descricao
+      // Precisamos transformar em um objeto com os campos id, title, position
+      const savedMarker = {
+        id: savedPoint.id,
+        title: savedPoint.descricao || "Novo Ponto",
+        position: {
+          lat: savedPoint.latitude,
+          lng: savedPoint.longitude,
+        },
+      };
+      setMarkers((prev) => [...prev, savedMarker]);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <>
@@ -35,6 +74,7 @@ export const Map = () => {
             mapContainerStyle={containerStyle}
             center={center}
             zoom={12}
+            onClick={handleMapClick}
           >
             {markers.map(marker => (
               <Marker
