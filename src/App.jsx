@@ -1,8 +1,12 @@
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { Map } from './pages/Map';
+
 function App() {
   return (
-    <h1 class="text-3xl font-bold underline text-red-700">
-      Hello world!
-    </h1>
+    <>
+      <Map />
+    </>
   )
 }
 

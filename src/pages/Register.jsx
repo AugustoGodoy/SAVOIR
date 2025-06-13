@@ -1,0 +1,39 @@
+import { Navbar, Logo, Title, Input, Button } from "../components";
+
+export function Register() {
+    return (
+        <>
+            <div className="max-w-md mx-auto p-4">
+                <div className="text-center">
+                    <Logo />
+                </div>
+
+                <div className="pt-6 pb-4">
+                    <Title title="Bem-vindo de volta" />
+                </div>
+
+                <form>
+                    <div className="pb-4">
+                        <Input label="Nome" placeholder="Digite seu nome..." type="email" required />
+                    </div>
+                    <div className="pb-4">
+                        <Input label="Email" placeholder="Digite seu email..." type="email" required />
+                    </div>
+                    <div className="pb-4">
+                        <Input label="Senha" placeholder="Digite sua senha..." type="password" required />
+                    </div>
+
+                    <div className="text-center pt-4">
+                        <Button type="submit">Acessar</Button>
+                    </div>
+                </form>
+
+                <div className="text-center pt-8">
+                    <a href="/cadastro" className="text-blue-600 hover:underline">
+                        Já tem cadastro? <strong>Faça Login</strong>
+                    </a>
+                </div>
+            </div>
+        </>
+    );
+}
