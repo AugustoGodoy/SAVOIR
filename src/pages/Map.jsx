@@ -22,7 +22,7 @@ export const Map = () => {
   
   // Substitua pela sua chave da API do Google Maps
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBwrRPIG6SuQN60WWTa58fbHoja85a5fLs",
+    googleMapsApiKey: "CHAVE_DE_API",
   });
 
   useEffect(() => {
