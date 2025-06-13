@@ -44,7 +44,7 @@ export const Map = () => {
     const newPoint = {
       latitude: lat,
       longitude: lng,
-      descricao: "",
+      descricao: "Descrição do ponto", // Você pode personalizar isso
     };
     try {
       const savedPoint = await postPoint(token, newPoint);

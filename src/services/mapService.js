@@ -6,13 +6,14 @@ const BASE_URL = 'https://passing-agatha-atitus-0ca94c8f.koyeb.app/ws/point';
 
 export async function getPoints(token) {
   try {
-    // const response = await axios.get(BASE_URL, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
+    const response = await axios.get(BASE_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     // Mocked response
+    /*
     const response = {
       status: 200,
       data: [
@@ -42,6 +43,7 @@ export async function getPoints(token) {
       },
       ],
     };
+    */
 
     // o objeto response.data possui os campos latitude e longitude mas precisamos mudar os nomes para lat lng
     const points = response.data.map(point => ({
@@ -65,13 +67,14 @@ export async function getPoints(token) {
 
 export async function postPoint(token, pointData) {
   try {
-    // const response = await axios.post(BASE_URL, pointData, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // });
+    const response = await axios.post(BASE_URL, pointData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     // Mocked response
+    /*
     const response = {
       status: 200,
       data: {
@@ -79,7 +82,8 @@ export async function postPoint(token, pointData) {
       ...pointData,
       },
     };
-    if (response.status === 200) {
+    */
+    if (response.status === 201) {
       return response.data;
     } else {
       throw new Error('Erro ao cadastrar ponto');
