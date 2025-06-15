@@ -9,14 +9,7 @@ const containerStyle = {
   height: "100%",
 };
 
-// Como pegar a posição atual do usuário?
-// Dica: use Geolocation API do navegador
-const center = {
-  lat: -23.55052,
-  lng: -46.633308,
-};
-
-export const Map = () => {
+export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) => {
   const { token } = useAuth();
   const [markers, setMarkers] = useState([]);
   
@@ -73,7 +66,7 @@ export const Map = () => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={12}
+            zoom={zoom}
             onClick={handleMapClick}
           >
             {markers.map(marker => (

@@ -1,9 +1,13 @@
 import "./logo.css";
+import logo from "../../assets/logo.png";
 
-export const Logo = () => {
+export function Logo({ className = "" }) {
   return (
-    <div className="logo">
-      <div className="text-wrapper">Logotipo</div>
-    </div>
+    <img
+      src={logo}
+      alt="Logotipo Savoir"
+      className={`w-24 h-24 mb-4 ${className}`}
+      draggable={false}
+    />
   );
-};
+}
