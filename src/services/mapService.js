@@ -92,3 +92,20 @@ export async function postPoint(token, pointData) {
     throw new Error(error.response?.data?.message || 'Erro ao cadastrar ponto');
   }
 }
+
+export async function deletePoint(token, id) {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200 || response.status === 204) {
+      return true;
+    } else {
+      throw new Error('Erro ao excluir ponto');
+    }
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Erro ao excluir ponto');
+  }
+}

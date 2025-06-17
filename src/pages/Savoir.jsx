@@ -1,7 +1,8 @@
 import React from "react";
-import { Map } from "./Map"; // Certifique-se que o caminho está correto
+import { Map } from "./Map";
+import { SushiCard } from "../components/SushiCard";
 
-const center = { lat: -28.2628, lng: -52.4067 }; // Passo Fundo, RS
+const center = { lat: -28.2628, lng: -52.4067 };
 
 export default function Savoir() {
   return (
@@ -13,19 +14,10 @@ export default function Savoir() {
       </div>
       <div className="w-full max-w-lg">
         <h2 className="text-white text-lg mb-4">Popular nas proximidades</h2>
-        {/* Aqui você pode mapear os restaurantes vindos da API */}
         <div className="flex flex-col gap-4">
-          {/* Exemplo de restaurante */}
-          <div className="bg-zinc-800 rounded-xl p-4 flex items-center justify-between">
-            <div>
-              <div className="text-white font-semibold">Sushi Spot</div>
-              <div className="text-zinc-400 text-sm">Japonês • 4.6 ★ • 0.7 mi</div>
-            </div>
-            <img src="/assets/sushi.jpg" alt="Sushi Spot" className="w-16 h-16 rounded-lg object-cover" />
-          </div>
-          {/* Repita para outros restaurantes */}
+          {/* Substitua o bloco antigo pelo SushiCard */}
+          <SushiCard />
         </div>
       </div>
     </div>
-  );
-}
+  );}
