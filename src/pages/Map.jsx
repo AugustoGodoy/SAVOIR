@@ -306,60 +306,74 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
         )}
 
         {/* Sugestão de ponto - Sushi Passo Fundo */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "48px 0" }}>
-          <h2
-            style={{
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          margin: "48px 0"
+        }}>
+          <div style={{
+            background: "linear-gradient(90deg, #23272f 60%, #2d313a 100%)",
+            borderRadius: 24,
+            padding: "32px 40px",
+            minWidth: 420,
+            maxWidth: 500,
+            boxShadow: "0 6px 32px #0006",
+            marginBottom: 32,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center"
+          }}>
+            <h2 style={{
               color: "#fff",
-              fontSize: 26,
+              fontSize: 28,
               fontWeight: "bold",
-              marginBottom: 24,
+              marginBottom: 28,
               letterSpacing: 1,
               textAlign: "center",
-              textShadow: "0 2px 8px #0008"
-            }}
-          >
-            Popular nas proximidades
-          </h2>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              background: "linear-gradient(90deg, #23272f 60%, #2d313a 100%)",
-              borderRadius: 24,
-              padding: 24,
-              minWidth: 380,
-              maxWidth: 440,
-              boxShadow: "0 4px 24px #0004",
-              marginBottom: 16,
-              gap: 18
-            }}
-            onClick={() => setOpen(true)}
-          >
-            <img
-              src={sushiImg}
-              alt="Sushi Passo Fundo"
+              textShadow: "0 2px 12px #000b"
+            }}>
+              Popular nas proximidades
+            </h2>
+            <div
               style={{
-                width: 70,
-                height: 70,
-                objectFit: "cover",
-                borderRadius: 14,
-                marginRight: 18,
-                background: "#111",
-                boxShadow: "0 2px 8px #0004"
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                gap: 18
               }}
-            />
-            <div>
-              <div style={{
-                fontWeight: "bold",
-                fontSize: 22,
-                color: "#f5f5f5", // Mais claro
-                marginBottom: 4,
-                textShadow: "0 1px 6px #0007"
-              }}>
-                Sushi Passo Fundo
-              </div>
-              <div style={{ color: "#ffd700", fontWeight: 500, marginBottom: 2 }}>
-                Japonês • 4.6 ★ • 0.7 mi
+              onClick={() => setOpen(true)}
+            >
+              <img
+                src={sushiImg}
+                alt="Sushi Passo Fundo"
+                style={{
+                  width: 70,
+                  height: 70,
+                  objectFit: "cover",
+                  borderRadius: 14,
+                  background: "#111",
+                  boxShadow: "0 2px 8px #0004"
+                }}
+              />
+              <div>
+                <div style={{
+                  fontWeight: "bold",
+                  fontSize: 24,
+                  color: "#fff",
+                  marginBottom: 4,
+                  textShadow: "0 1px 8px #000b"
+                }}>
+                  Sushi Passo Fundo
+                </div>
+                <div style={{
+                  color: "#ffd700",
+                  fontWeight: 500,
+                  marginBottom: 2,
+                  fontSize: 16
+                }}>
+                  Japonês • 4.6 ★ • 0.7 mi
+                </div>
               </div>
             </div>
           </div>
