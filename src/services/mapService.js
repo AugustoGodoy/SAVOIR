@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://passing-agatha-atitus-0ca94c8f.koyeb.app/ws/point';
+const BASE_URL = 'https://api-java-springboot-1.onrender.com/ws/point';
 
 
 
