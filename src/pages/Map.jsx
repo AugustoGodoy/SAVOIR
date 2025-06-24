@@ -306,72 +306,25 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
         )}
 
         {/* Sugestão de ponto - Sushi Passo Fundo */}
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          margin: "48px 0"
-        }}>
-          <div style={{
-            background: "linear-gradient(90deg, #23272f 60%, #2d313a 100%)",
-            borderRadius: 24,
-            padding: "32px 40px",
-            minWidth: 420,
-            maxWidth: 500,
-            boxShadow: "0 6px 32px #0006",
-            marginBottom: 32,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center"
-          }}>
-            <h2 style={{
-              color: "#fff",
-              fontSize: 28,
-              fontWeight: "bold",
-              marginBottom: 28,
-              letterSpacing: 1,
-              textAlign: "center",
-              textShadow: "0 2px 12px #000b"
-            }}>
+git         <div className="flex flex-col items-center my-14">
+          <div className="bg-gradient-to-r from-gray-800 to-green-700 rounded-3xl p-10 min-w-[320px] max-w-xl shadow-2xl mb-9 flex flex-col items-center">
+            <h2 className="text-3xl font-bold mb-8 tracking-wide text-center text-white drop-shadow-lg">
               Popular nas proximidades
             </h2>
             <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                width: "100%",
-                gap: 18
-              }}
+              className="flex items-center w-full gap-6 cursor-pointer hover:scale-105 transition-transform"
               onClick={() => setOpen(true)}
             >
               <img
                 src={sushiImg}
                 alt="Sushi Passo Fundo"
-                style={{
-                  width: 70,
-                  height: 70,
-                  objectFit: "cover",
-                  borderRadius: 14,
-                  background: "#111",
-                  boxShadow: "0 2px 8px #0004"
-                }}
+                className="w-20 h-20 object-cover rounded-xl bg-black shadow-lg"
               />
               <div>
-                <div style={{
-                  fontWeight: "bold",
-                  fontSize: 24,
-                  color: "#fff",
-                  marginBottom: 4,
-                  textShadow: "0 1px 8px #000b"
-                }}>
+                <div className="font-bold text-2xl text-white mb-1 drop-shadow">
                   Sushi Passo Fundo
                 </div>
-                <div style={{
-                  color: "#ffd700",
-                  fontWeight: 500,
-                  marginBottom: 2,
-                  fontSize: 16
-                }}>
+                <div className="text-yellow-400 font-semibold text-lg">
                   Japonês • 4.6 ★ • 0.7 mi
                 </div>
               </div>
