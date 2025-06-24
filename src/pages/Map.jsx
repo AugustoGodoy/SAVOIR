@@ -306,9 +306,9 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
         )}
 
         {/* Sugestão de ponto - Sushi Passo Fundo */}
-git         <div className="flex flex-col items-center my-14">
+        <div className="flex flex-col items-center my-14">
           <div className="bg-gradient-to-r from-gray-800 to-green-700 rounded-3xl p-10 min-w-[320px] max-w-xl shadow-2xl mb-9 flex flex-col items-center">
-            <h2 className="text-3xl font-bold mb-8 tracking-wide text-center text-white drop-shadow-lg">
+            <h2 className="text-4xl font-extrabold mb-8 tracking-wide text-center bg-gradient-to-r from-yellow-300 via-green-400 to-green-700 bg-clip-text text-transparent drop-shadow-lg">
               Popular nas proximidades
             </h2>
             <div
