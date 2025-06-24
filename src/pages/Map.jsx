@@ -16,6 +16,7 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
   const [showInput, setShowInput] = useState(false);
   const [newPoint, setNewPoint] = useState(null);
   const [descricao, setDescricao] = useState("");
+  const [nome, setNome] = useState(""); // Novo estado para o nome do ponto
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [open, setOpen] = useState(false);
@@ -44,22 +45,26 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
     });
     setShowInput(true);
     setDescricao("");
+    setNome(""); // Limpa o nome ao abrir o input
     setIsEditing(false);
     setSelectedMarker(null);
   };
 
   // Confirma o cadastro do ponto
   const handleAddPoint = async () => {
-    if (!descricao.trim()) return;
+    if (!descricao.trim() || !nome.trim()) return;
     const pointData = {
-      ...newPoint,
-      descricao,
+      name: nome,
+      description: descricao,
+      latitude: newPoint.latitude,
+      longitude: newPoint.longitude,
     };
     try {
       const savedPoint = await postPoint(token, pointData);
       const savedMarker = {
         id: savedPoint.id,
-        title: savedPoint.descricao || "Novo Ponto",
+        title: savedPoint.name || "Novo Ponto",
+        description: savedPoint.description,
         position: {
           lat: savedPoint.latitude,
           lng: savedPoint.longitude,
@@ -68,6 +73,7 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
       setMarkers((prev) => [...prev, savedMarker]);
       setShowInput(false);
       setDescricao("");
+      setNome("");
       setNewPoint(null);
     } catch (error) {
       alert(error.message);
@@ -83,7 +89,8 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
 
   // Inicia edição da descrição
   const handleEditDescription = () => {
-    setDescricao(selectedMarker.title);
+    setDescricao(selectedMarker.description || selectedMarker.title);
+    setNome(selectedMarker.title || "");
     setIsEditing(true);
     setShowInput(true);
     setNewPoint({
@@ -95,26 +102,27 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
 
   // Salva edição da descrição
   const handleSaveEdit = async () => {
-    if (!descricao.trim()) return;
+    if (!descricao.trim() || !nome.trim()) return;
     // Atualiza no backend (reutilizando postPoint, mas ideal seria um put/patch)
     const pointData = {
+      id: newPoint.id,
+      name: nome,
+      description: descricao,
       latitude: newPoint.latitude,
       longitude: newPoint.longitude,
-      descricao,
-      id: newPoint.id,
     };
     try {
-      // Aqui seria ideal um endpoint de update, mas vamos simular:
       await postPoint(token, pointData); // Troque por updatePoint se existir
       setMarkers((prev) =>
         prev.map((m) =>
-          m.id === newPoint.id ? { ...m, title: descricao } : m
+          m.id === newPoint.id ? { ...m, title: nome, description: descricao } : m
         )
       );
       setShowInput(false);
       setIsEditing(false);
-      setSelectedMarker((prev) => prev && { ...prev, title: descricao });
+      setSelectedMarker((prev) => prev && { ...prev, title: nome, description: descricao });
       setDescricao("");
+      setNome("");
       setNewPoint(null);
     } catch (error) {
       alert(error.message);
@@ -139,6 +147,7 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
     setShowInput(false);
     setIsEditing(false);
     setDescricao("");
+    setNome("");
     setNewPoint(null);
   };
 
@@ -167,8 +176,10 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
                 onCloseClick={() => setSelectedMarker(null)}
               >
                 <div style={{ minWidth: 200 }}>
+                  <div style={{ fontWeight: "bold", marginBottom: 8 }}>Nome:</div>
+                  <div style={{ marginBottom: 8 }}>{selectedMarker.title}</div>
                   <div style={{ fontWeight: "bold", marginBottom: 8 }}>Descrição:</div>
-                  <div style={{ marginBottom: 12 }}>{selectedMarker.title}</div>
+                  <div style={{ marginBottom: 12 }}>{selectedMarker.description}</div>
                   <div style={{ display: "flex", gap: 8 }}>
                     <button
                       onClick={handleEditDescription}
@@ -181,7 +192,7 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
                         cursor: "pointer"
                       }}
                     >
-                      Editar descrição
+                      Editar ponto
                     </button>
                     <button
                       onClick={handleDeletePoint}
@@ -205,7 +216,7 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
           <div>Carregando mapa...</div>
         )}
 
-        {/* Input para descrição do ponto */}
+        {/* Input para nome e descrição do ponto */}
         {showInput && (
           <div style={{
             position: "absolute",
@@ -224,8 +235,25 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
             alignItems: "center"
           }}>
             <div style={{ fontSize: 20, fontWeight: "bold", marginBottom: 16 }}>
-              {isEditing ? "Editar descrição do ponto" : "Adicionar novo ponto"}
+              {isEditing ? "Editar ponto" : "Adicionar novo ponto"}
             </div>
+            <input
+              type="text"
+              value={nome}
+              onChange={e => setNome(e.target.value)}
+              placeholder="Digite o nome"
+              style={{
+                width: "100%",
+                padding: 10,
+                borderRadius: 6,
+                border: "1px solid #444",
+                marginBottom: 16,
+                background: "#181a20",
+                color: "#fff",
+                fontSize: 16
+              }}
+              autoFocus
+            />
             <input
               type="text"
               value={descricao}
@@ -241,7 +269,6 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
                 color: "#fff",
                 fontSize: 16
               }}
-              autoFocus
             />
             <div style={{ display: "flex", gap: 16, width: "100%", justifyContent: "center" }}>
               <button
