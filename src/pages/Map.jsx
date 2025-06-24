@@ -306,28 +306,35 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
         )}
 
         {/* Sugestão de ponto - Sushi Passo Fundo */}
-        <div style={{ padding: "32px 0" }}>
-          <h2 style={{ color: "#fff", marginLeft: 48 }}>Popular nas proximidades</h2>
-          {/* Card Sushi Passo Fundo */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "48px 0" }}>
+          <h2
+            style={{
+              color: "#fff",
+              fontSize: 26,
+              fontWeight: "bold",
+              marginBottom: 24,
+              letterSpacing: 1,
+              textAlign: "center",
+              textShadow: "0 2px 8px #0008"
+            }}
+          >
+            Popular nas proximidades
+          </h2>
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              background: "#28282d",
-              borderRadius: 20,
-              padding: 20,
-              margin: "24px 48px",
-              cursor: "pointer",
-              maxWidth: 500,
-              justifyContent: "space-between",
-              boxShadow: "0 2px 8px #0002"
+              background: "linear-gradient(90deg, #23272f 60%, #2d313a 100%)",
+              borderRadius: 24,
+              padding: 24,
+              minWidth: 380,
+              maxWidth: 440,
+              boxShadow: "0 4px 24px #0004",
+              marginBottom: 16,
+              gap: 18
             }}
             onClick={() => setOpen(true)}
           >
-            <div>
-              <div style={{ fontWeight: "bold", fontSize: 22 }}>Sushi Passo Fundo</div>
-              <div style={{ color: "#bbb", margin: "4px 0" }}>Japonês • 4.6 ★ • 0.7 mi</div>
-            </div>
             <img
               src={sushiImg}
               alt="Sushi Passo Fundo"
@@ -335,82 +342,96 @@ export const Map = ({ center = { lat: -28.2628, lng: -52.4067 }, zoom = 13 }) =>
                 width: 70,
                 height: 70,
                 objectFit: "cover",
-                borderRadius: 12,
-                marginLeft: 16,
+                borderRadius: 14,
+                marginRight: 18,
                 background: "#111",
                 boxShadow: "0 2px 8px #0004"
               }}
             />
-          </div>
-
-          {/* Modal com perfil do Sushi Passo Fundo */}
-          {open && (
-            <div
-              style={{
-                position: "fixed",
-                top: 0, left: 0, right: 0, bottom: 0,
-                background: "rgba(0,0,0,0.7)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                zIndex: 1000
-              }}
-              onClick={() => setOpen(false)}
-            >
-              <div
-                style={{
-                  background: "#23272f",
-                  borderRadius: 20,
-                  padding: 32,
-                  minWidth: 340,
-                  maxWidth: 400,
-                  color: "#fff",
-                  position: "relative",
-                  boxShadow: "0 4px 24px rgba(0,0,0,0.4)"
-                }}
-                onClick={e => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setOpen(false)}
-                  style={{
-                    position: "absolute",
-                    top: 16,
-                    right: 16,
-                    background: "none",
-                    border: "none",
-                    color: "#fff",
-                    fontSize: 22,
-                    cursor: "pointer"
-                  }}
-                  aria-label="Fechar"
-                >×</button>
-                <img
-                  src={sushiImg}
-                  alt="Sushi Passo Fundo"
-                  style={{
-                    width: "100%",
-                    height: 160,
-                    objectFit: "cover",
-                    borderRadius: 12,
-                    marginBottom: 16,
-                    background: "#111"
-                  }}
-                />
-                <div style={{ fontWeight: "bold", fontSize: 24, marginBottom: 4 }}>Sushi Passo Fundo</div>
-                <div style={{ color: "#ffd700", fontSize: 18, marginBottom: 8 }}>4.6 ★</div>
-                <div style={{ color: "#bbb", marginBottom: 16 }}>
-                  O melhor sushi de Passo Fundo! Ambiente aconchegante, ingredientes frescos e uma experiência japonesa autêntica.
-                </div>
-                <div style={{ fontWeight: "bold", marginBottom: 8 }}>Combos:</div>
-                <ul style={{ paddingLeft: 20, marginBottom: 0 }}>
-                  <li>Combo 1: 20 peças variadas - R$ 39,90</li>
-                  <li>Combo 2: 40 peças especiais - R$ 69,90</li>
-                  <li>Combo 3: 60 peças premium - R$ 99,90</li>
-                </ul>
+            <div>
+              <div style={{
+                fontWeight: "bold",
+                fontSize: 22,
+                color: "#f5f5f5", // Mais claro
+                marginBottom: 4,
+                textShadow: "0 1px 6px #0007"
+              }}>
+                Sushi Passo Fundo
+              </div>
+              <div style={{ color: "#ffd700", fontWeight: 500, marginBottom: 2 }}>
+                Japonês • 4.6 ★ • 0.7 mi
               </div>
             </div>
-          )}
+          </div>
         </div>
+
+        {/* Modal com perfil do Sushi Passo Fundo */}
+        {open && (
+          <div
+            style={{
+              position: "fixed",
+              top: 0, left: 0, right: 0, bottom: 0,
+              background: "rgba(0,0,0,0.7)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1000
+            }}
+            onClick={() => setOpen(false)}
+          >
+            <div
+              style={{
+                background: "#23272f",
+                borderRadius: 20,
+                padding: 32,
+                minWidth: 340,
+                maxWidth: 400,
+                color: "#fff",
+                position: "relative",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4)"
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setOpen(false)}
+                style={{
+                  position: "absolute",
+                  top: 16,
+                  right: 16,
+                  background: "none",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: 22,
+                  cursor: "pointer"
+                }}
+                aria-label="Fechar"
+              >×</button>
+              <img
+                src={sushiImg}
+                alt="Sushi Passo Fundo"
+                style={{
+                  width: "100%",
+                  height: 160,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  marginBottom: 16,
+                  background: "#111"
+                }}
+              />
+              <div style={{ fontWeight: "bold", fontSize: 24, marginBottom: 4 }}>Sushi Passo Fundo</div>
+              <div style={{ color: "#ffd700", fontSize: 18, marginBottom: 8 }}>4.6 ★</div>
+              <div style={{ color: "#bbb", marginBottom: 16 }}>
+                O melhor sushi de Passo Fundo! Ambiente aconchegante, ingredientes frescos e uma experiência japonesa autêntica.
+              </div>
+              <div style={{ fontWeight: "bold", marginBottom: 8 }}>Combos:</div>
+              <ul style={{ paddingLeft: 20, marginBottom: 0 }}>
+                <li>Combo 1: 20 peças variadas - R$ 39,90</li>
+                <li>Combo 2: 40 peças especiais - R$ 69,90</li>
+                <li>Combo 3: 60 peças premium - R$ 99,90</li>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
